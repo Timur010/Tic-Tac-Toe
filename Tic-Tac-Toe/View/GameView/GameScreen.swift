@@ -28,10 +28,41 @@ struct GameScreen: View {
             }
             
             VStack (spacing: 1) {
-                Image("logo")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .padding(.bottom, 15)
+                HStack {
+                    Button {
+                        presentation.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "house")
+                            .resizable()
+                            .frame(width: 25, height: 23)
+                            .padding(.bottom, 15)
+                            .foregroundColor(.textColor)
+                    }
+
+                    
+                    
+                    Spacer()
+                    
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .padding(.bottom, 15)
+                    
+                    Spacer()
+                    
+                    Button {
+
+                    } label: {
+                        Image(systemName: "questionmark")
+                            .resizable()
+                            .frame(width: 15, height: 25)
+                            .padding(.bottom, 15)
+                            .foregroundColor(.blue)
+                    }
+                    
+                }
+                .padding(.horizontal, 30)
+                
                 Text("Tic-Tac-Toe")
                     .font(.system(size: 20))
                     .foregroundColor(.textColor)
@@ -44,25 +75,27 @@ struct GameScreen: View {
                         .bold()
                         .padding(.top, 10)
                     HStack {
-                        Text("X")
+                        Text("Тиму X")
                             .foregroundColor(.textColor)
                             .bold()
-                            .font(.system(size: 35))
+                            .font(.system(size: 25))
+                            .lineLimit(1)
                         Spacer()
-                        Text("O")
+                        Text("Шарап O")
                             .foregroundColor(.blue)
                             .bold()
-                            .font(.system(size: 35))
-                        
+                            .lineLimit(1)
+                            .font(.system(size: 25))
                     }
-                    .padding(.horizontal, 80)
+                    .padding(.horizontal, 50)
+                    
                     HStack {
-                        Text("0")
+                        Text("\(Constants.crossWins)")
                             .foregroundColor(.textColor)
                             .bold()
                             .font(.system(size: 30))
                         Spacer()
-                        Text("0")
+                        Text("\(Constants.zeroWins)")
                             .foregroundColor(.blue)
                             .bold()
                             .font(.system(size: 30))
@@ -85,11 +118,17 @@ struct GameScreen: View {
                     }
                 }
                 Spacer()
+                
+                ButtonView(action: {
+                    resetGame()
+                }, imageName: "memories", description: "начать заново")
+
             }
             .navigationBarBackButtonHidden(true)
             .background(Color.mainColor)
             .blur(radius: gameEnded ? 5 : 0)
             .disabled(gameEnded ? true : false)
+            
         }
     }
 }
@@ -114,6 +153,11 @@ extension GameScreen {
         
         for value in ["X", "O"] {
             if checkWinner(list: moves, values: value) {
+                if value == "X" {
+                    Constants.crossWins += 1
+                } else if value == "O"{
+                    Constants.zeroWins += 1
+                }
                 withAnimation {
                     gameEnded = true
                 }
@@ -179,10 +223,13 @@ extension GameScreen {
     }
     
     func resetGame() {
-        gameEnded = false
-        moves = ["","","","","","","","",""]
-        winner = ""
-        crossMove = true
+        withAnimation {
+            gameEnded = false
+            moves = ["","","","","","","","",""]
+            winner = ""
+            crossMove = true
+        }
+        
     }
 }
 

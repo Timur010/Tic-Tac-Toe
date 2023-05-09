@@ -11,20 +11,34 @@ struct WindowVictory: View {
     var winner: String
     var action: () -> ()
     var closing: () -> ()
+    
     var body: some View {
+        
        RoundedRectangle(cornerRadius: 16)
             .frame(width: UIScreen.main.bounds.width - 128, height:  UIScreen.main.bounds.height / 5)
             .foregroundColor(.mainColor)
-            .shadow(color: .black.opacity(0.08), radius: 6, x: 0, y: 1)
+            .shadow(color: .black.opacity(0.3), radius: 15, x: 0, y: 1)
             .overlay (
                 VStack {
+                    
                     if winner == "X" {
-                        Text("Победили Крестики")
+                        Text("Победили Крестики!")
+                            .foregroundColor(.textColor)
+                            .bold()
+                            .padding(.top, 15)
                     } else if winner == "O" {
-                        Text ("Победили Нолики")
+                        Text ("Победили Нолики!")
+                            .foregroundColor(.textColor)
+                            .bold()
+                            .padding(.top, 15)
                     } else {
                         Text ("Ничья")
+                            .foregroundColor(.textColor)
+                            .bold()
+                            .padding(.top, 15)
                     }
+                    
+                    Spacer()
                     
                     Button {
                         withAnimation {
@@ -32,25 +46,29 @@ struct WindowVictory: View {
                         }
                     } label: {
                         Text(NSLocalizedString("Начать заново", comment: ""))
-                            .font(.system(size: 18))
-                            .foregroundColor(.white)
+                            .bold()
+                            .foregroundColor(.gray)
                             .padding(10)
-                            .padding(.horizontal, 15)
-                            .background(Color.gray)
+                            .background(Color.mainColor)
                             .cornerRadius(10)
+
                     }
+                    .shadow(color: .black.opacity(0.1), radius: 6, x: 0, y: 1)
                     
                     Button {
                         closing()
                     } label: {
-                        Text(NSLocalizedString("Выйти на главное меню", comment: ""))
-                            .font(.system(size: 14))
-                            .foregroundColor(.white)
+                        Text(NSLocalizedString("главное меню", comment: ""))
+                            .bold()
+                            .font(.system(size: 18))
+                            .foregroundColor(.mainColor)
                             .padding(10)
-//                            .padding(.horizontal, 15)
-                            .background(Color.gray)
+                            .background(Color.lineColor)
                             .cornerRadius(10)
                     }
+                    .shadow(color: .black.opacity(0.1), radius: 6, x: 0, y: 1)
+                    
+                    Spacer()
                 }
             )
             .zIndex(1)

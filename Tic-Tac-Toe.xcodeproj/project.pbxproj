@@ -16,6 +16,8 @@
 		39B7650A2A0A3FAD0040952E /* WindowVictory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B765092A0A3FAD0040952E /* WindowVictory.swift */; };
 		39B7650D2A0A4FB50040952E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7650C2A0A4FB50040952E /* Color.swift */; };
 		39B765202A0A5BF00040952E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7651F2A0A5BF00040952E /* Constants.swift */; };
+		39B765232A0A81050040952E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B765222A0A81050040952E /* SettingView.swift */; };
+		39B765252A0A824B0040952E /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B765242A0A824B0040952E /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,9 @@
 		39B765092A0A3FAD0040952E /* WindowVictory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowVictory.swift; sourceTree = "<group>"; };
 		39B7650C2A0A4FB50040952E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		39B7651F2A0A5BF00040952E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		39B765212A0A76480040952E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39B765222A0A81050040952E /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		39B765242A0A824B0040952E /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +66,8 @@
 		39A6D06F2A091FAC0077DBAD /* Tic-Tac-Toe */ = {
 			isa = PBXGroup;
 			children = (
-				39A6D0722A091FAC0077DBAD /* ContentView.swift */,
-				39B7651F2A0A5BF00040952E /* Constants.swift */,
-				39B7650C2A0A4FB50040952E /* Color.swift */,
-				39A6D07E2A0921CB0077DBAD /* GameScreen.swift */,
-				39B765072A0A31330040952E /* ButtonXO.swift */,
-				39B765092A0A3FAD0040952E /* WindowVictory.swift */,
+				39B765212A0A76480040952E /* Info.plist */,
+				39B765262A0A85250040952E /* View */,
 				39B7650B2A0A4BF50040952E /* System */,
 				39A6D0762A091FAE0077DBAD /* Preview Content */,
 			);
@@ -88,6 +89,61 @@
 				39A6D0742A091FAE0077DBAD /* Assets.xcassets */,
 			);
 			path = System;
+			sourceTree = "<group>";
+		};
+		39B765262A0A85250040952E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				39B7652B2A0A85DD0040952E /* Additions */,
+				39B765292A0A85690040952E /* GameView */,
+				39B765272A0A852E0040952E /* ContentView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		39B765272A0A852E0040952E /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				39A6D0722A091FAC0077DBAD /* ContentView.swift */,
+				39B765282A0A854F0040952E /* Components */,
+			);
+			path = ContentView;
+			sourceTree = "<group>";
+		};
+		39B765282A0A854F0040952E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				39B765222A0A81050040952E /* SettingView.swift */,
+				39B765242A0A824B0040952E /* ButtonView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		39B765292A0A85690040952E /* GameView */ = {
+			isa = PBXGroup;
+			children = (
+				39A6D07E2A0921CB0077DBAD /* GameScreen.swift */,
+				39B7652A2A0A85880040952E /* Components */,
+			);
+			path = GameView;
+			sourceTree = "<group>";
+		};
+		39B7652A2A0A85880040952E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				39B765092A0A3FAD0040952E /* WindowVictory.swift */,
+				39B765072A0A31330040952E /* ButtonXO.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		39B7652B2A0A85DD0040952E /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				39B7650C2A0A4FB50040952E /* Color.swift */,
+				39B7651F2A0A5BF00040952E /* Constants.swift */,
+			);
+			path = Additions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +221,9 @@
 				39A6D07F2A0921CB0077DBAD /* GameScreen.swift in Sources */,
 				39B7650A2A0A3FAD0040952E /* WindowVictory.swift in Sources */,
 				39B765202A0A5BF00040952E /* Constants.swift in Sources */,
+				39B765232A0A81050040952E /* SettingView.swift in Sources */,
 				39A6D0712A091FAC0077DBAD /* Tic_Tac_ToeApp.swift in Sources */,
+				39B765252A0A824B0040952E /* ButtonView.swift in Sources */,
 				39B7650D2A0A4FB50040952E /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,9 +356,9 @@
 				DEVELOPMENT_TEAM = WX7Z7T8KYD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tic-Tac-Toe/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -328,9 +386,9 @@
 				DEVELOPMENT_TEAM = WX7Z7T8KYD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tic-Tac-Toe/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
