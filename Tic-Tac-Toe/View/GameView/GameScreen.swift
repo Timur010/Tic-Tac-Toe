@@ -8,110 +8,41 @@
 import SwiftUI
 
 struct GameScreen: View {
+    @StateObject var vm = GameViewModel()
     @Environment(\.presentationMode) var presentation
-    @State private var moves = ["","","","","","","","",""]
-    @State private var gameEnded = false
-    @State var crossMove: Bool = true
-    @State private var winner = "Ничья"
-    private var ranges = [(0..<3),(3..<6),(6..<9)]
     
     var body: some View {
         ZStack {
             Color.mainColor
                 .edgesIgnoringSafeArea(.all)
-            if gameEnded {
-                WindowVictory(winner: winner) {
-                    resetGame()
+            if vm.gameEnded {
+                WindowVictory(winner: vm.winner) {
+                    vm.resetGame()
                 } closing: {
                     presentation.wrappedValue.dismiss()
                 }
             }
             
             VStack (spacing: 1) {
-                HStack {
-                    Button {
-                        presentation.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "house")
-                            .resizable()
-                            .frame(width: 25, height: 23)
-                            .padding(.bottom, 15)
-                            .foregroundColor(.textColor)
-                    }
-
-                    
-                    
-                    Spacer()
-                    
-                    Image("logo")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .padding(.bottom, 15)
-                    
-                    Spacer()
-                    
-                    Button {
-
-                    } label: {
-                        Image(systemName: "questionmark")
-                            .resizable()
-                            .frame(width: 15, height: 25)
-                            .padding(.bottom, 15)
-                            .foregroundColor(.blue)
-                    }
-                    
-                }
-                .padding(.horizontal, 30)
+                
+                header
                 
                 Text("Tic-Tac-Toe")
                     .font(.system(size: 20))
                     .foregroundColor(.textColor)
                     .bold()
                 
-                VStack {
-                    Text("Счет")
-                        .foregroundColor(.lineColor)
-                        .font(.system(size: 20))
-                        .bold()
-                        .padding(.top, 10)
-                    HStack {
-                        Text("Тиму X")
-                            .foregroundColor(.textColor)
-                            .bold()
-                            .font(.system(size: 25))
-                            .lineLimit(1)
-                        Spacer()
-                        Text("Шарап O")
-                            .foregroundColor(.blue)
-                            .bold()
-                            .lineLimit(1)
-                            .font(.system(size: 25))
-                    }
-                    .padding(.horizontal, 50)
-                    
-                    HStack {
-                        Text("\(Constants.crossWins)")
-                            .foregroundColor(.textColor)
-                            .bold()
-                            .font(.system(size: 30))
-                        Spacer()
-                        Text("\(Constants.zeroWins)")
-                            .foregroundColor(.blue)
-                            .bold()
-                            .font(.system(size: 30))
-                    }
-                    .padding(.horizontal, 85)
-                }
+                scoreboard
                 
                 Spacer()
-                ForEach(ranges, id: \.self) { renge in
+                ForEach(vm.ranges, id: \.self) { renge in
                     HStack (spacing: 1){
                         ForEach(renge, id: \.self) { index in
-                            ButtonXO(title: $moves[index])
+                            ButtonXO(title: $vm.moves[index])
                                 .onTapGesture {
-                                    playerTabX(index: index)
+                                    vm.playerTabX(index: index)
                                     if Constants.singleMode {
-                                        crossMove.toggle()
+                                        vm.crossMove.toggle()
                                     }
                                 }
                         }
@@ -120,14 +51,14 @@ struct GameScreen: View {
                 Spacer()
                 
                 ButtonView(action: {
-                    resetGame()
+                    vm.resetGame()
                 }, imageName: "memories", description: "начать заново")
 
             }
             .navigationBarBackButtonHidden(true)
             .background(Color.mainColor)
-            .blur(radius: gameEnded ? 5 : 0)
-            .disabled(gameEnded ? true : false)
+            .blur(radius: vm.gameEnded ? 5 : 0)
+            .disabled(vm.gameEnded ? true : false)
             
         }
     }
@@ -141,98 +72,74 @@ struct GameScreen_Previews: PreviewProvider {
 
 
 extension GameScreen {
-    func playerTabX(index: Int) {
-        if moves[index] == "", !gameEnded  {
-            if !crossMove {
-                moves[index] = "O"
-            } else {
-                moves[index] = "X"
+    private var header: some View {
+        HStack {
+            Button {
+                presentation.wrappedValue.dismiss()
+            } label: {
+                Image(systemName: "house")
+                    .resizable()
+                    .frame(width: 25, height: 23)
+                    .padding(.bottom, 15)
+                    .foregroundColor(.textColor)
             }
             
-        }
-        
-        for value in ["X", "O"] {
-            if checkWinner(list: moves, values: value) {
-                if value == "X" {
-                    Constants.crossWins += 1
-                } else if value == "O"{
-                    Constants.zeroWins += 1
-                }
-                withAnimation {
-                    gameEnded = true
-                }
-                winner = value
-            }
-        }
-        
-        if !gameEnded, !Constants.singleMode {
-            botMove()
-        }
-    }
-    
-    func botMove() {
-        var availableMoves: [Int] = []
-        var movesLeft = 0
-        
-        for move in moves {
-            if move == "" {
-                availableMoves.append(movesLeft)
-            }
-            movesLeft += 1
-        }
-        
-        if availableMoves.count != 0 {
-            moves[availableMoves.randomElement()!] = "O"
+            Spacer()
             
-            for value in ["X", "O"] {
-                if checkWinner(list: moves, values: value) {
-                    withAnimation {
-                        gameEnded = true
-                    }
-                    winner = value
-                }
-            }
-        } else {
-            withAnimation {
-                gameEnded = true
-            }
-        }
-    }
-    
-    func checkWinner(list: [String], values: String) -> Bool {
-        let winningSequences = [
-            [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ],
-            [ 0, 4, 8 ], [ 2, 4, 6 ],
-            [ 0, 3, 6 ], [ 1, 4, 7 ], [ 2, 5, 8 ],
-        ]
-        
-        for sequence in winningSequences {
-            var score = 0
+            Image("logo")
+                .resizable()
+                .frame(width: 50, height: 50)
+                .padding(.bottom, 15)
             
-            for match in sequence {
-                if list[match] == values {
-                    score += 1
-                }
+            Spacer()
+            
+            Button {
                 
-                if score == 3 {
-                    return true
-                }
+            } label: {
+                Image(systemName: "questionmark")
+                    .resizable()
+                    .frame(width: 15, height: 25)
+                    .padding(.bottom, 15)
+                    .foregroundColor(.blue)
             }
+            
         }
-        return false
+        .padding(.horizontal, 30)
     }
-    
-    func resetGame() {
-        withAnimation {
-            gameEnded = false
-            moves = ["","","","","","","","",""]
-            winner = ""
-            crossMove = true
+    private var scoreboard: some View {
+        VStack {
+            Text("Счет")
+                .foregroundColor(.lineColor)
+                .font(.system(size: 20))
+                .bold()
+                .padding(.top, 10)
+            HStack {
+                Text("Тиму X")
+                    .foregroundColor(.textColor)
+                    .bold()
+                    .font(.system(size: 25))
+                    .lineLimit(1)
+                Spacer()
+                Text("Шарап O")
+                    .foregroundColor(.blue)
+                    .bold()
+                    .lineLimit(1)
+                    .font(.system(size: 25))
+            }
+            .padding(.horizontal, 50)
+            
+            HStack {
+                Text("\(vm.currentAccountX)")
+                    .foregroundColor(.textColor)
+                    .bold()
+                    .font(.system(size: 30))
+                Spacer()
+                Text("\(vm.currentAccountO)")
+                    .foregroundColor(.blue)
+                    .bold()
+                    .font(.system(size: 30))
+            }
+            .padding(.horizontal, 85)
         }
-        
     }
 }
-
-
-
-

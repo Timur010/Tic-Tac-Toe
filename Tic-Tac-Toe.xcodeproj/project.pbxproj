@@ -18,6 +18,7 @@
 		39B765202A0A5BF00040952E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7651F2A0A5BF00040952E /* Constants.swift */; };
 		39B765232A0A81050040952E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B765222A0A81050040952E /* SettingView.swift */; };
 		39B765252A0A824B0040952E /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B765242A0A824B0040952E /* ButtonView.swift */; };
+		39B7652E2A0A89D80040952E /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7652D2A0A89D80040952E /* GameViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		39B765212A0A76480040952E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39B765222A0A81050040952E /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		39B765242A0A824B0040952E /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		39B7652D2A0A89D80040952E /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				39B765212A0A76480040952E /* Info.plist */,
+				39B7652B2A0A85DD0040952E /* Additions */,
+				39B7652C2A0A89BE0040952E /* ViewModel */,
 				39B765262A0A85250040952E /* View */,
 				39B7650B2A0A4BF50040952E /* System */,
 				39A6D0762A091FAE0077DBAD /* Preview Content */,
@@ -94,7 +98,6 @@
 		39B765262A0A85250040952E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				39B7652B2A0A85DD0040952E /* Additions */,
 				39B765292A0A85690040952E /* GameView */,
 				39B765272A0A852E0040952E /* ContentView */,
 			);
@@ -144,6 +147,14 @@
 				39B7651F2A0A5BF00040952E /* Constants.swift */,
 			);
 			path = Additions;
+			sourceTree = "<group>";
+		};
+		39B7652C2A0A89BE0040952E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				39B7652D2A0A89D80040952E /* GameViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +235,7 @@
 				39B765232A0A81050040952E /* SettingView.swift in Sources */,
 				39A6D0712A091FAC0077DBAD /* Tic_Tac_ToeApp.swift in Sources */,
 				39B765252A0A824B0040952E /* ButtonView.swift in Sources */,
+				39B7652E2A0A89D80040952E /* GameViewModel.swift in Sources */,
 				39B7650D2A0A4FB50040952E /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
