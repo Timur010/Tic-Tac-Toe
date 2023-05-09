@@ -12,5 +12,7 @@ struct Constants {
     @Binding var showSetting: Bool 
     @AppStorage("crossWins") static var crossWins: Int = 0
     @AppStorage("zeroWins") static var zeroWins: Int = 0
+    @AppStorage("nameX") static var nameUserX: String = ""
+    @AppStorage("nameO") static var nameUserO: String = ""
     
 }

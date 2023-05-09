@@ -19,6 +19,7 @@
 		39B765232A0A81050040952E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B765222A0A81050040952E /* SettingView.swift */; };
 		39B765252A0A824B0040952E /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B765242A0A824B0040952E /* ButtonView.swift */; };
 		39B7652E2A0A89D80040952E /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7652D2A0A89D80040952E /* GameViewModel.swift */; };
+		39B765302A0A93710040952E /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B7652F2A0A93710040952E /* SettingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		39B765222A0A81050040952E /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		39B765242A0A824B0040952E /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		39B7652D2A0A89D80040952E /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		39B7652F2A0A93710040952E /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				39B7652D2A0A89D80040952E /* GameViewModel.swift */,
+				39B7652F2A0A93710040952E /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				39B765232A0A81050040952E /* SettingView.swift in Sources */,
 				39A6D0712A091FAC0077DBAD /* Tic_Tac_ToeApp.swift in Sources */,
 				39B765252A0A824B0040952E /* ButtonView.swift in Sources */,
+				39B765302A0A93710040952E /* SettingViewModel.swift in Sources */,
 				39B7652E2A0A89D80040952E /* GameViewModel.swift in Sources */,
 				39B7650D2A0A4FB50040952E /* Color.swift in Sources */,
 			);

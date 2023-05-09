@@ -9,14 +9,23 @@ import SwiftUI
 
 struct ButtonXO: View {
     @Binding var title: String
+    
     var body: some View {
         HStack {
-            Text("\(title)")
-                .font(.system(size: 40))
-                .padding(20)
+            if title == "X" {
+                Text("\(title)")
+                    .font(.system(size: 40))
+                    .padding(20)
+                    .foregroundColor(Color.textColor)
+            } else {
+                Text("\(title)")
+                    .font(.system(size: 40))
+                    .padding(20)
+                    .foregroundColor(Color.blue)
+            }
         }
         .frame(width: 100, height: 100)
-        .background(Color.white)
+        .background(Color.lineColor)
         .cornerRadius(20)
     }
 }
