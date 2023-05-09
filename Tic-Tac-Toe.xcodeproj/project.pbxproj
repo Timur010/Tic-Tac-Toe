@@ -11,6 +11,8 @@
 		39A6D0732A091FAC0077DBAD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A6D0722A091FAC0077DBAD /* ContentView.swift */; };
 		39A6D0752A091FAE0077DBAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39A6D0742A091FAE0077DBAD /* Assets.xcassets */; };
 		39A6D0782A091FAE0077DBAD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39A6D0772A091FAE0077DBAD /* Preview Assets.xcassets */; };
+		39A6D07F2A0921CB0077DBAD /* GameScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A6D07E2A0921CB0077DBAD /* GameScreen.swift */; };
+		39B765082A0A31330040952E /* ButtonXO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B765072A0A31330040952E /* ButtonXO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		39A6D0722A091FAC0077DBAD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		39A6D0742A091FAE0077DBAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39A6D0772A091FAE0077DBAD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		39A6D07E2A0921CB0077DBAD /* GameScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreen.swift; sourceTree = "<group>"; };
+		39B765072A0A31330040952E /* ButtonXO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonXO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				39A6D0702A091FAC0077DBAD /* Tic_Tac_ToeApp.swift */,
 				39A6D0722A091FAC0077DBAD /* ContentView.swift */,
+				39A6D07E2A0921CB0077DBAD /* GameScreen.swift */,
+				39B765072A0A31330040952E /* ButtonXO.swift */,
 				39A6D0742A091FAE0077DBAD /* Assets.xcassets */,
 				39A6D0762A091FAE0077DBAD /* Preview Content */,
 			);
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39B765082A0A31330040952E /* ButtonXO.swift in Sources */,
 				39A6D0732A091FAC0077DBAD /* ContentView.swift in Sources */,
+				39A6D07F2A0921CB0077DBAD /* GameScreen.swift in Sources */,
 				39A6D0712A091FAC0077DBAD /* Tic_Tac_ToeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +283,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -304,6 +313,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
