@@ -9,7 +9,9 @@ import SwiftUI
 
 class GameViewModel: ObservableObject {
     @Published var moves = ["","","","","","","","",""]
+    @Published var moves1 = ["","","","","","","","","", "", "", "", "", "", "", ""]
     @Published var ranges = [(0..<3),(3..<6),(6..<9)]
+    @Published var ranges1 = [(0..<4),(4..<8),(8..<12), (12..<16)]
     @Published var winner = ""
     @Published var gameEnded = false
     @Published var crossMove: Bool = true
@@ -82,6 +84,12 @@ class GameViewModel: ObservableObject {
             [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ],
             [ 0, 4, 8 ], [ 2, 4, 6 ],
             [ 0, 3, 6 ], [ 1, 4, 7 ], [ 2, 5, 8 ],
+        ]
+        
+        let winningSequences1 = [
+            [ 0, 1, 2, 3 ], [ 4, 5, 6, 7 ], [ 8, 9,10, 11], [12, 13, 14, 15],
+            [ 0, 5, 8, 15], [ 4, 7, 10, 13 ],
+            [ 0, 4, 8, 12 ], [ 1, 5, 8, 14 ], [ 2, 6, 9, 15 ], [3, 7, 11, 15]
         ]
         
         for sequence in winningSequences {
