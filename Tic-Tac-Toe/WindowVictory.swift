@@ -10,10 +10,11 @@ import SwiftUI
 struct WindowVictory: View {
     var winner: String
     var action: () -> ()
+    var closing: () -> ()
     var body: some View {
        RoundedRectangle(cornerRadius: 16)
             .frame(width: UIScreen.main.bounds.width - 128, height:  UIScreen.main.bounds.height / 5)
-            .foregroundColor(.white)
+            .foregroundColor(.mainColor)
             .shadow(color: .black.opacity(0.08), radius: 6, x: 0, y: 1)
             .overlay (
                 VStack {
@@ -38,7 +39,18 @@ struct WindowVictory: View {
                             .background(Color.gray)
                             .cornerRadius(10)
                     }
-
+                    
+                    Button {
+                        closing()
+                    } label: {
+                        Text(NSLocalizedString("Выйти на главное меню", comment: ""))
+                            .font(.system(size: 14))
+                            .foregroundColor(.white)
+                            .padding(10)
+//                            .padding(.horizontal, 15)
+                            .background(Color.gray)
+                            .cornerRadius(10)
+                    }
                 }
             )
             .zIndex(1)
@@ -47,6 +59,6 @@ struct WindowVictory: View {
 
 struct WindowVictory_Previews: PreviewProvider {
     static var previews: some View {
-        WindowVictory(winner: "X", action: ({}))
+        WindowVictory(winner: "X", action: ({}), closing: ({}))
     }
 }

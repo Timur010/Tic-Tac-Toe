@@ -8,13 +8,63 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showGameScreen: Bool = false
     var body: some View {
         NavigationView {
-            NavigationLink(destination: GameScreen()) {
-                Text("Начать игру")
-                    .foregroundColor(.black)
-                    .font(.system(size: 30))
-                    .bold()
+            ZStack {
+                Color.mainColor
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack (spacing: 20){
+                    
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .padding(.top, 80)
+                        .padding(.bottom, 150)
+                        
+                   
+                    Button {
+                        showGameScreen.toggle()
+                        Constants.singleMode = false
+                    } label: {
+                        Image(systemName: "person")
+                        Text("Одиночная игра")
+                            .foregroundColor(.textColor)
+                            .font(.system(size: 20))
+                            .bold()
+                    }
+                    .padding(11)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(.lineColor)
+                    )
+                    
+                    Button {
+                        showGameScreen.toggle()
+                        Constants.singleMode = true
+                    } label: {
+                        Image(systemName: "person.2")
+                        Text("Игра в двоем")
+                            .foregroundColor(.textColor)
+                            .font(.system(size: 20))
+                            .bold()
+                    }
+                    .padding(11)
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(.lineColor)
+                    )
+                    Spacer()
+
+                }
+                NavigationLink(isActive: $showGameScreen) {
+                    GameScreen()
+                } label: {
+                    EmptyView()
+                }
             }
         }
     }

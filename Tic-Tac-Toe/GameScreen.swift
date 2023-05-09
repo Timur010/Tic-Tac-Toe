@@ -8,33 +8,86 @@
 import SwiftUI
 
 struct GameScreen: View {
+    @Environment(\.presentationMode) var presentation
     @State private var moves = ["","","","","","","","",""]
     @State private var gameEnded = false
+    @State var crossMove: Bool = true
     @State private var winner = "Ничья"
     private var ranges = [(0..<3),(3..<6),(6..<9)]
     
     var body: some View {
         ZStack {
+            Color.mainColor
+                .edgesIgnoringSafeArea(.all)
             if gameEnded {
                 WindowVictory(winner: winner) {
                     resetGame()
+                } closing: {
+                    presentation.wrappedValue.dismiss()
                 }
             }
             
             VStack (spacing: 1) {
+                Image("logo")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .padding(.bottom, 15)
+                Text("Tic-Tac-Toe")
+                    .font(.system(size: 20))
+                    .foregroundColor(.textColor)
+                    .bold()
+                
+                VStack {
+                    Text("Счет")
+                        .foregroundColor(.lineColor)
+                        .font(.system(size: 20))
+                        .bold()
+                        .padding(.top, 10)
+                    HStack {
+                        Text("X")
+                            .foregroundColor(.textColor)
+                            .bold()
+                            .font(.system(size: 35))
+                        Spacer()
+                        Text("O")
+                            .foregroundColor(.blue)
+                            .bold()
+                            .font(.system(size: 35))
+                        
+                    }
+                    .padding(.horizontal, 80)
+                    HStack {
+                        Text("0")
+                            .foregroundColor(.textColor)
+                            .bold()
+                            .font(.system(size: 30))
+                        Spacer()
+                        Text("0")
+                            .foregroundColor(.blue)
+                            .bold()
+                            .font(.system(size: 30))
+                    }
+                    .padding(.horizontal, 85)
+                }
+                
+                Spacer()
                 ForEach(ranges, id: \.self) { renge in
                     HStack (spacing: 1){
                         ForEach(renge, id: \.self) { index in
                             ButtonXO(title: $moves[index])
                                 .onTapGesture {
                                     playerTabX(index: index)
+                                    if Constants.singleMode {
+                                        crossMove.toggle()
+                                    }
                                 }
                         }
                     }
                 }
+                Spacer()
             }
             .navigationBarBackButtonHidden(true)
-            .background(Color.gray)
+            .background(Color.mainColor)
             .blur(radius: gameEnded ? 5 : 0)
             .disabled(gameEnded ? true : false)
         }
@@ -51,7 +104,12 @@ struct GameScreen_Previews: PreviewProvider {
 extension GameScreen {
     func playerTabX(index: Int) {
         if moves[index] == "", !gameEnded  {
-            moves[index] = "X"
+            if !crossMove {
+                moves[index] = "O"
+            } else {
+                moves[index] = "X"
+            }
+            
         }
         
         for value in ["X", "O"] {
@@ -63,7 +121,7 @@ extension GameScreen {
             }
         }
         
-        if !gameEnded {
+        if !gameEnded, !Constants.singleMode {
             botMove()
         }
     }
@@ -124,6 +182,7 @@ extension GameScreen {
         gameEnded = false
         moves = ["","","","","","","","",""]
         winner = ""
+        crossMove = true
     }
 }
 
