@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct GameScreen: View {
-    @StateObject var vm = GameViewModel()
+    @StateObject var viewModel = SettingViewModel()
+    @EnvironmentObject var vm: GameViewModel
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
@@ -39,6 +40,7 @@ struct GameScreen: View {
                     HStack (spacing: 1){
                         ForEach(renge, id: \.self) { index in
                             ButtonXO(title: $vm.moves[index])
+                                .environmentObject(vm)
                                 .onTapGesture {
                                     vm.playerTabX(index: index)
                                     if Constants.singleMode {

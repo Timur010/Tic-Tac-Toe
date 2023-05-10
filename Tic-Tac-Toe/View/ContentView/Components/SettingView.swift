@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
-    @StateObject var vm = SettingViewModel()
+    @EnvironmentObject var vm: SettingViewModel
     var body: some View {
         ScrollView {
             Text ("Настройки игрока")
@@ -26,9 +26,29 @@ struct SettingView: View {
                 Image("3X3")
                     .resizable()
                     .frame(width: 100, height: 100)
+                    .padding(4)
+                    .onTapGesture {
+                        Constants.gameMode = false
+                        vm.gameMode = false
+                    }
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(vm.gameMode ? .mainColor : .lineColor)
+                    )
                 Image("4X4")
                     .resizable()
                     .frame(width: 100, height: 100)
+                    .onTapGesture {
+                        Constants.gameMode = true
+                        vm.gameMode = true
+                    }
+                    .padding(4)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(vm.gameMode ? .lineColor : .mainColor)
+                    )
             }
             Spacer()
         }

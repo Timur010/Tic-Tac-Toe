@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = SettingViewModel()
+    @StateObject var vm = GameViewModel()
     @State private var showGameScreen: Bool = false
     @State private var showSetting: Bool = false
     
@@ -21,6 +23,7 @@ struct ContentView: View {
                 
                 NavigationLink(isActive: $showGameScreen) {
                     GameScreen()
+                        .environmentObject(vm)
                 } label: {
                     EmptyView()
                 }
@@ -48,21 +51,25 @@ extension ContentView {
             ButtonView(action: {
                 showGameScreen.toggle()
                 Constants.singleMode = false
+                vm.modeSelection()
             }, imageName: "person", description: "Одиночная игра")
             
             ButtonView(action: {
                 showGameScreen.toggle()
                 Constants.singleMode = true
+                vm.modeSelection()
             }, imageName: "person.2", description: "Игра в двоем")
             
             Spacer()
 
             ButtonView(action: {
                 showSetting.toggle()
+                viewModel.gameModeAssignment()
             }, imageName: "gear", description: "Настройки")
             
             NavigationLink(isActive: $showSetting) {
                 SettingView()
+                    .environmentObject(viewModel)
             } label: {
                 EmptyView()
             }

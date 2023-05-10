@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ButtonXO: View {
+    @EnvironmentObject var vm: GameViewModel
     @Binding var title: String
     
     var body: some View {
@@ -24,7 +25,7 @@ struct ButtonXO: View {
                     .foregroundColor(Color.blue)
             }
         }
-        .frame(width: 100, height: 100)
+        .frame(width: vm.constraint, height: vm.constraint)
         .background(Color.lineColor)
         .cornerRadius(20)
     }

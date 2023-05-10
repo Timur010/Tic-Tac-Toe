@@ -8,17 +8,21 @@
 import SwiftUI
 
 class GameViewModel: ObservableObject {
+    @Published var valueVictory = 3
+    @Published var constraint: CGFloat = 100
     @Published var moves = ["","","","","","","","",""]
-    @Published var moves1 = ["","","","","","","","","", "", "", "", "", "", "", ""]
     @Published var ranges = [(0..<3),(3..<6),(6..<9)]
-    @Published var ranges1 = [(0..<4),(4..<8),(8..<12), (12..<16)]
     @Published var winner = ""
     @Published var gameEnded = false
     @Published var crossMove: Bool = true
     @Published var currentAccountX: Int = 0
     @Published var currentAccountO: Int = 0
+    @Published var winningSequences = [
+        [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ],
+        [ 0, 4, 8 ], [ 2, 4, 6 ],
+        [ 0, 3, 6 ], [ 1, 4, 7 ], [ 2, 5, 8 ],
+    ]
 
-    
     func playerTabX(index: Int) {
         if moves[index] == "", !gameEnded  {
             if !crossMove {
@@ -80,18 +84,6 @@ class GameViewModel: ObservableObject {
     }
     
     func checkWinner(list: [String], values: String) -> Bool {
-        let winningSequences = [
-            [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ],
-            [ 0, 4, 8 ], [ 2, 4, 6 ],
-            [ 0, 3, 6 ], [ 1, 4, 7 ], [ 2, 5, 8 ],
-        ]
-        
-        let winningSequences1 = [
-            [ 0, 1, 2, 3 ], [ 4, 5, 6, 7 ], [ 8, 9,10, 11], [12, 13, 14, 15],
-            [ 0, 5, 8, 15], [ 4, 7, 10, 13 ],
-            [ 0, 4, 8, 12 ], [ 1, 5, 8, 14 ], [ 2, 6, 9, 15 ], [3, 7, 11, 15]
-        ]
-        
         for sequence in winningSequences {
             var score = 0
             
@@ -100,7 +92,7 @@ class GameViewModel: ObservableObject {
                     score += 1
                 }
                 
-                if score == 3 {
+                if score == valueVictory {
                     return true
                 }
             }
@@ -111,10 +103,38 @@ class GameViewModel: ObservableObject {
     func resetGame() {
         withAnimation {
             gameEnded = false
-            moves = ["","","","","","","","",""]
+            if Constants.gameMode {
+                moves = ["","","","","","","","","", "", "", "", "", "", "", ""]
+            } else {
+                moves = ["","","","","","","","",""]
+            }
             winner = ""
             crossMove = true
         }
         
+    }
+    
+    func modeSelection() {
+        if Constants.gameMode {
+            valueVictory = 4
+            constraint = 80
+            moves = ["","","","","","","","","", "", "", "", "", "", "", ""]
+            ranges = [(0..<4),(4..<8),(8..<12), (12..<16)]
+            winningSequences = [
+                            [ 0, 1, 2, 3 ], [ 4, 5, 6, 7 ], [ 8, 9,10, 11], [12, 13, 14, 15],
+                            [ 0, 5, 10, 15], [ 3, 6, 9, 12 ],
+                            [ 0, 4, 8, 12 ], [ 1, 5, 9, 13 ], [ 2, 6, 10, 14 ], [3, 7, 11, 15]
+                        ]
+        } else {
+            valueVictory = 3
+            constraint = 100
+            moves = ["","","","","","","","",""]
+            ranges = [(0..<3),(3..<6),(6..<9)]
+            winningSequences = [
+                [ 0, 1, 2 ], [ 3, 4, 5 ], [ 6, 7, 8 ],
+                [ 0, 4, 8 ], [ 2, 4, 6 ],
+                [ 0, 3, 6 ], [ 1, 4, 7 ], [ 2, 5, 8 ],
+            ]
+        }
     }
 }
