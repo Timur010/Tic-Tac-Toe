@@ -21,6 +21,7 @@ struct GameScreen: View {
                     vm.resetGame()
                 } closing: {
                     presentation.wrappedValue.dismiss()
+                    vm.resetGame()
                 }
             }
             
@@ -78,6 +79,7 @@ extension GameScreen {
         HStack {
             Button {
                 presentation.wrappedValue.dismiss()
+                vm.resetGame()
             } label: {
                 Image(systemName: "house")
                     .resizable()

@@ -30,7 +30,10 @@ class GameViewModel: ObservableObject {
             } else {
                 moves[index] = "X"
             }
-            
+        } else {
+            withAnimation {
+                gameEnded = true
+            }
         }
         
         for value in ["X", "O"] {

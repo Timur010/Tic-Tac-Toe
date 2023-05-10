@@ -12,6 +12,7 @@ struct SettingView: View {
     var body: some View {
         ScrollView {
             Text ("Настройки игрока")
+                .foregroundColor(.black)
             Divider()
             HStack {
                 XSetting
@@ -19,9 +20,11 @@ struct SettingView: View {
                 OSetting
             }
             Text ("Настройки игры")
+                .foregroundColor(.black)
             Divider()
             
             Text("выберите раскладку")
+                .foregroundColor(.black)
             HStack {
                 Image("3X3")
                     .resizable()
